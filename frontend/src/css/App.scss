@@ -1,0 +1,37 @@
+#app {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	height: 100vh;
+
+	.app-container {
+		display: flex;
+		height: 100%;
+		grid-area: auto;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	#content {
+	}
+
+	#sidebar {
+		border-left: 4px solid #575757;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	#app {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 730px) {
+	#app {
+		grid-template-columns: 1fr;
+	}
+
+	#sidebar {
+		border-left: 0px solid transparent !important;
+		border-top: 4px solid #575757;
+	}
+}
