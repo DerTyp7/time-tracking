@@ -1,15 +1,24 @@
-import "./css/App.scss";
+import "./css/app.scss";
+import ServerProvider from "./contexts/ServerContext";
+import Table from "./components/table/Table";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
 	return (
-		<div id="app">
-			<div id="content" className="app-container">
-				<h1>Hello World</h1>
+		<ServerProvider>
+			<div id="app">
+				<div id="content" className="app-container">
+					<Router>
+						<Routes>
+							<Route exact path="/table/:monthYear" element={<Table />} />
+						</Routes>
+					</Router>
+				</div>
+				<div id="sidebar" className="app-container">
+					<h1>Sidebar</h1>
+				</div>
 			</div>
-			<div id="sidebar" className="app-container">
-				<h1>Sidebar</h1>
-			</div>
-		</div>
+		</ServerProvider>
 	);
 }
 
