@@ -10,8 +10,10 @@ import Header from "./Header";
 function Table() {
 	const params = useParams();
 	const { URL } = useContext(ServerContext);
+	const weekDays = ["Sat.", "Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri."];
 	const [entries, setEntries] = useState([]);
 	const [monthYear, setMonthYear] = useState(params.monthYear);
+	const [rows, setRows] = useState([]);
 
 	async function fetchEntries() {
 		let response = await fetch(URL + `/api/entry/all/` + monthYear);
@@ -19,9 +21,47 @@ function Table() {
 		setEntries(data);
 	}
 
+	function daysInMonth() {
+		let year = monthYear.split("-")[1];
+		let month = monthYear.split("-")[0];
+
+		return new Date(year, month, 0).getDate();
+	}
+
 	useEffect(() => {
 		fetchEntries();
 	}, []);
+
+	useEffect(() => {
+		let month = monthYear.split("-")[0];
+		let year = monthYear.split("-")[1];
+		setRows([]);
+		for (let i = 1; i <= daysInMonth(); i++) {
+			let date = `${i < 10 ? "0" + i : i}.${
+				month < 10 ? "0" + month : month
+			}.${year}`;
+
+			let dayOfWeek = weekDays[new Date(year, month, i).getDay()];
+
+			let entry = entries.find((entry) => entry.date === date);
+
+			if (entry) {
+				setRows((...rows) => [
+					rows,
+					<Row
+						date={entry.date}
+						checkedIn={entry.checkedIn}
+						checkedOut={entry.checkedOut}
+						ind={entry.ind}
+						norm={entry.norm}
+					/>,
+				]);
+			} else {
+				setRows((...rows) => [rows, <Row date={`${dayOfWeek} - ${date}`} />]);
+			}
+		}
+		console.log(rows);
+	}, [entries]);
 
 	function nextMonth() {
 		let month = parseInt(monthYear.split("-")[0]);
@@ -57,22 +97,13 @@ function Table() {
 			<div className="table-container">
 				<Header
 					date="Date"
-					checkedIn="Checked In"
-					checkedOut="Checked Out"
+					checkedIn="In"
+					checkedOut="Out"
 					ind="Ind."
 					norm="Norm."
 				/>
-
 				{/* ROWS */}
-				{entries.map((entry, index) => (
-					<Row
-						date={entry.date}
-						checkedIn={entry.checkedIn}
-						checkedOut={entry.checkedOut}
-						ind={entry.ind}
-						norm={entry.norm}
-					/>
-				))}
+				{rows}
 			</div>
 		</div>
 	);
