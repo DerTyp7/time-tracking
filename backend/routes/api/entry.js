@@ -106,6 +106,7 @@ router.get("/all/:monthYear?", request_handler.LoggerHandler, (req, res) => {
 							result[i].checked_in,
 							result[i].checked_out
 						),
+						result: "-1:20",
 					});
 				}
 			}

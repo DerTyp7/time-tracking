@@ -1,0 +1,35 @@
+.table-container {
+	height: 100%;
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
+
+	table {
+		width: 100%;
+		height: 100%;
+		margin-bottom: 50px;
+		border-collapse: collapse;
+		overflow-x: hidden;
+
+		tr {
+			height: 40px;
+			text-align: center;
+			background-color: #323232;
+			&:nth-child(even) {
+				background-color: #1d1d1d;
+			}
+
+			th {
+				padding-top: 2px;
+				padding-bottom: 2px;
+				background-color: #131313;
+			}
+
+			td {
+				padding-top: 4px;
+				padding-bottom: 4px;
+			}
+		}
+	}
+}

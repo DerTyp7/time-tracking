@@ -1,24 +1,16 @@
-import "../../css/components/table.scss";
+import "../../css/components/table/table.scss";
 
-function Row({ date, checkedIn, checkedOut, ind, norm }) {
+function Row({ weekDay, date, checkedIn, checkedOut, ind, norm, result }) {
 	return (
-		<div className="table-row">
-			<div className="table-cell">
-				<span>{date ? date : "-"}</span>
-			</div>
-			<div className="table-cell">
-				<span>{checkedIn ? checkedIn : "-"}</span>
-			</div>
-			<div className="table-cell">
-				<span>{checkedOut ? checkedOut : "-"}</span>
-			</div>
-			<div className="table-cell">
-				<span>{ind ? ind : "-"}</span>
-			</div>
-			<div className="table-cell">
-				<span>{norm ? norm : "-"}</span>
-			</div>
-		</div>
+		<tr>
+			<td>{weekDay ? weekDay : "-"}</td>
+			<td>{date ? date : "-"}</td>
+			<td>{checkedIn ? checkedIn : "-"}</td>
+			<td>{checkedOut ? checkedOut : "-"}</td>
+			<td>{ind ? ind : "-"}</td>
+			<td>{norm ? norm : "-"}</td>
+			<td>{result ? result : "-"}</td>
+		</tr>
 	);
 }
 
