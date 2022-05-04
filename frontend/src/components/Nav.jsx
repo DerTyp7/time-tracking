@@ -102,7 +102,8 @@ function Nav() {
 					</a>
 				</div>
 			</div>
-			<div>
+			{/* <div>
+				
 				<div className="nav-info">
 					<p
 						className={
@@ -112,7 +113,7 @@ function Nav() {
 						{gz} GZ
 					</p>
 				</div>
-			</div>
+					</div> */}
 			<div className="month-navigation">
 				<div
 					className="nav-arrows-previous"
@@ -128,7 +129,7 @@ function Nav() {
 					onClick={nextMonth}
 				></div>
 			</div>
-			<div>
+			{/*<div>
 				<div className="working-hours">
 					<div className="working-hours-input-block">
 						<div className="working-hours-input-container">
@@ -144,9 +145,9 @@ function Nav() {
 
 					<small>Working hours</small>
 				</div>
-			</div>
+			</div>*/}
 			<div className="nav-account">
-				<p>Welcome back, Username!</p>
+				<p>Hey, Username!</p>
 				<a className="logout-a" href="/logout">
 					Log out
 				</a>
